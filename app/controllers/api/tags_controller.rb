@@ -12,7 +12,7 @@ class Api::TagsController < ApplicationController
     if @tag.save
       render "show.json.jb"
     else
-      render json: { errors: @errors.full_messages }, status: 422
+      render json: { errors: @tag.errors.full_messages }, status: :bad_request
     end
   end
 
