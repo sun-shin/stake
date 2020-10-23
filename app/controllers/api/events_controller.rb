@@ -25,7 +25,7 @@ class Api::EventsController < ApplicationController
     end
   end
 
-  def edit
+  def update
     @event = Event.find(params[:id])
 
     @event.title = params[:title] || @event.title

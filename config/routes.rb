@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     get "/users/:id" => "users#show"
     post "/users" => "users#create"
-    patch "/users/:id" => "users#edit"
+    patch "/users/:id" => "users#update"
     delete "/users/:id" => "users#destroy"
     
     post "/sessions" => "sessions#create"
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get "/events" => "events#index"
     get "/events/:id" => "events#show"
     post "/events" => "events#create"
-    patch "/events/:id" => "events#edit"
+    patch "/events/:id" => "events#update"
     delete "/events/:id" => "events#destroy"
 
     get "/event_users" => "event_users#index"
@@ -18,5 +18,11 @@ Rails.application.routes.draw do
     delete "/event_users/:id" => "event_users#destroy"
 
     get "/tags" => "tags#index"
+    post "/tags" => "tags#create"
+    delete "/tags/:id" => "tags#destroy"
+
+    post "/event_tags" => "event_tags#create"
+    patch "/event_tags/:id" => "event_tags#update"
+    delete "/event_tags/:id" => "event_tags#destroy"
   end
 end
