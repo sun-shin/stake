@@ -1,0 +1,9 @@
+{
+  id: event.id,
+  title: event.title,
+  created_by: event.user_id,
+  description: event.description,
+  address: event.address,
+  attendee_limit: event.attendee_limit,
+  date: event.date
+}

@@ -1,0 +1,1 @@
+render partial: "event_user.json.jb", locals: { event_user: @event_user }
