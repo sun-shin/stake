@@ -5,7 +5,9 @@
   description: event.description,
   address: event.address,
   attendee_limit: event.attendee_limit,
-  date: event.date,
+  # event_start: event.event_start,
+  # duration: 
+  openings: event.openings,
   tags: event.tags.map do |tag|
     tag.name
   end
