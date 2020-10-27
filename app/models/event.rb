@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   has_many :tags, through: :event_tags 
 
   validates :title, presence:true, uniqueness:true
-  validates :description, length: { in: 10..250 }
+  validates :description, length: { in: 5..250 }
   validates :address, presence:true
   
 end

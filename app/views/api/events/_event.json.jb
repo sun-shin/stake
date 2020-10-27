@@ -5,5 +5,6 @@
   description: event.description,
   address: event.address,
   attendee_limit: event.attendee_limit,
-  date: event.date
+  date: event.date,
+  tags: event.tags   
 }
