@@ -1,7 +1,7 @@
 class Api::EventsController < ApplicationController
   
   before_action :authenticate_user, except: [:index, :show]
-  #authenticate create, update, destroy for current_user
+  #authenticate update, destroy if user_id = current_user
   def index
     @events = Event.all 
     render "index.json.jb"
@@ -19,7 +19,7 @@ class Api::EventsController < ApplicationController
   def create
     @event = Event.new(
       title: params[:title],
-      user_id: params[:user_id],
+      user_id: current_user.id,
       description: params[:description],
       address: params[:address],
       attendee_limit: params[:attendee_limit],
@@ -28,10 +28,10 @@ class Api::EventsController < ApplicationController
     if @event.save
       render "show.json.jb", status: :created
     else
-      render json: { errors: @user.errors.full_messages }, status: :bad_request
+      render json: { errors: @event.errors.full_messages }, status: :bad_request
     end
   end
-
+  
   def update
     @event = Event.find(params[:id])
 
@@ -42,16 +42,24 @@ class Api::EventsController < ApplicationController
     @event.attendee_limit = params[:attendee_limit] || @event.attendee_limit
     @event.date = params[:date] || @event.date
 
-    if @event.save
-      render "show.json.jb"
-    else
-      render json: { errors: @event.errors.full_messages }, status: 422
+    if @event.user_id == current_user.id 
+      if @event.save
+        render "show.json.jb"
+      else
+        render json: { errors: @event.errors.full_messages }, status: :unprocessible_entity
+      end
+    else 
+      render json: { status: :unauthorized }
     end
   end
-
+# if user_id = current_user
   def destroy
     event = Event.find(params[:id])
-    event.destroy
-    render json: {message: "Event has been destroyed"}
+    if event.user_id == current_user.id 
+      event.destroy
+      render json: {message: "Event has been destroyed"}
+    else 
+      render json: { status: :unauthorized }
+    end
   end
 end

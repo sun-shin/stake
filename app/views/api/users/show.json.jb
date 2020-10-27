@@ -1,4 +1,11 @@
 user = render partial: "user.json.jb", locals: { user: @user }
-user[:events] = @user.events
-user[:attending_events] = @user.attending_events
+
+user[:events] = @user.events.map do |event|
+  render partial: "/api/events/event", locals: { event: event }
+end
+
+user[:attending_events] = @user.attending_events.map do |event|
+  event.title
+end
+
 user

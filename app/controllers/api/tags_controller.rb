@@ -1,5 +1,5 @@
 class Api::TagsController < ApplicationController
-  
+  # create and destroy only on back-end
   def index
     @tags = Tag.all
     render "index.json.jb"

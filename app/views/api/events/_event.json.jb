@@ -6,5 +6,7 @@
   address: event.address,
   attendee_limit: event.attendee_limit,
   date: event.date,
-  tags: event.tags   
+  tags: event.tags.map do |tag|
+    tag.name
+  end
 }
