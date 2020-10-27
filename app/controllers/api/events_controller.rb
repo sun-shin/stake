@@ -1,12 +1,19 @@
 class Api::EventsController < ApplicationController
+  
+  before_action :authenticate_user, except: [:index, :show]
+  #authenticate create, update, destroy for current_user
   def index
     @events = Event.all 
     render "index.json.jb"
   end
 
   def show
-    @event = Event.find(params[:id])
-    render "show.json.jb"
+    if current_user
+      @event = Event.find(params[:id])
+      render "show.json.jb"
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
   def create

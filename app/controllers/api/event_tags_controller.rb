@@ -1,5 +1,7 @@
 class Api::EventTagsController < ApplicationController
   
+  #authenticate create,update, destroy for current_user if current_user created event
+  
   def create
     @event_tag = EventTag.new(
       event_id: params[:event_id],

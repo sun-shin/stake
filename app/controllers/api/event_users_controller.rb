@@ -1,5 +1,8 @@
 class Api::EventUsersController < ApplicationController
 
+  before_action :authenticate_user
+  #authenticate create,update, destroy for current_user
+
   def index
     @event_users = EventUser.all
     render "index.json.jb"

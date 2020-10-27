@@ -4,5 +4,5 @@
   last_name: user.last_name,
   email: user.email,
   phone_number: user.phone_number,
-  image: user.image 
+  image: user.image
 }
