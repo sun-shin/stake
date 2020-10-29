@@ -5,7 +5,7 @@ user[:events] = @user.events.map do |event|
 end
 
 user[:attending_events] = @user.attending_events.map do |event|
-  event.title
+  render partial: "/api/events/attending", locals: { event: event }
 end
 
 user

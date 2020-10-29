@@ -8,16 +8,18 @@ class Event < ApplicationRecord
   validates :title, presence:true, uniqueness:true
   validates :description, length: { in: 5..250 }
   validates :address, presence:true
+  validates :duration, numericality: true
 
   def openings
     @event_users = EventUser.all
-    i = 0
+    event_id = id
+    count = 0
     @event_users.map do |event_user|
       if event_user.event_id == event_id 
-        i += 1
+        count += 1
       end
     end
-    i
+    attendee_limit - count
   end
   
 end

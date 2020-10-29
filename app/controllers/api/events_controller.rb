@@ -23,7 +23,8 @@ class Api::EventsController < ApplicationController
       description: params[:description],
       address: params[:address],
       attendee_limit: params[:attendee_limit],
-      date: params[:date]
+      event_start: params[:event_start],
+      duration: params[:duration]
     )
     if @event.save
       render "show.json.jb", status: :created
@@ -40,13 +41,14 @@ class Api::EventsController < ApplicationController
     @event.description = params[:description] || @event.description
     @event.address = params[:address] || @event.address
     @event.attendee_limit = params[:attendee_limit] || @event.attendee_limit
-    @event.date = params[:date] || @event.date
+    @event.event_start = params[:event_start] || @event.event_start
+    @event.duration = params[:duration] || @event.duration
 
     if @event.user_id == current_user.id 
       if @event.save
         render "show.json.jb"
       else
-        render json: { errors: @event.errors.full_messages }, status: :unprocessible_entity
+        render json: { errors: @event.errors.full_messages }, status: :bad_request
       end
     else 
       render json: { status: :unauthorized }
