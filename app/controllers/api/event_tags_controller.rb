@@ -1,7 +1,6 @@
 class Api::EventTagsController < ApplicationController
   
   before_action :authenticate_user
-  #authenticate update, destroy for current_user if current_user created event
   
   def create
     @event_tag = EventTag.new(
@@ -9,10 +8,14 @@ class Api::EventTagsController < ApplicationController
       tag_id: params[:tag_id]
     )
 
-    if @event_tag.save
-      render "show.json.jb"
+    if @event_tag.event.user_id == current_user.id
+      if @event_tag.save
+        render "show.json.jb"
+      else
+        render json: { errors: @event_tag.errors.full_messages }
+      end
     else
-      render json: { errors: @errors.full_messages }
+      render json: { message: "Users may only create tags for their created events" }, status: :unauthorized
     end
   end
   
@@ -20,12 +23,11 @@ class Api::EventTagsController < ApplicationController
   def update 
     @event_tag = EventTag.find(params[:id])
     if @event_tag.event.user_id == current_user.id
-      # @event_tag.event_id = params[:event_id] || @event_tag.event_id
       @event_tag.tag_id = params[:tag_id] || @event_tag.tag_id
       
       render "show.json.jb"
     else
-      render json: { "Users may only change tags of their own events" }, status: :unauthorized
+      render json: { message: "Users may only change tags of their own events" }, status: :unauthorized
     end
   end
 
