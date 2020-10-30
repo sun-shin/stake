@@ -36,13 +36,14 @@ class Api::UsersController < ApplicationController
       end
       @user.phone_number = params[:phone_number] || @user.phone_number
       @user.image = params[:image] || @user.image
-    end
-    
 
-    if @user.save
-      render "show.json.jb"
+      if @user.save
+        render "show.json.jb"
+      else
+        render json: { errors: @user.errors.full_messages }, status: 422
+      end
     else
-      render json: { errors: @user.errors.full_messages }, status: 422
+      render json: {message: "You can only edit your own information!"}
     end
   end
 

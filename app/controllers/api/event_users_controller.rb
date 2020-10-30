@@ -16,13 +16,13 @@ class Api::EventUsersController < ApplicationController
     if @event_user.save
       render "show.json.jb"
     else
-      render json: { errors: @user.errors.full.messages }, status: 422
+      render json: { errors: @event_user.errors.full_messages }, status: 422
     end
   end
 #unattend event
   def destroy 
     event_user = EventUser.find(params[:id])
-    if event_user.user_id == current_user
+    if event_user.user_id == current_user.id
       event_user.destroy
       render json: {message: "You are no longer attending this event."}
     else

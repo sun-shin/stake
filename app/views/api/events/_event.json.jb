@@ -1,12 +1,12 @@
 {
   id: event.id,
   title: event.title,
-  created_by: event.user_id,
-  description: event.description,
-  address: event.address,
-  attendee_limit: event.attendee_limit,
+  created_by: event.user.first_name + ' ' + event.user.last_name,
   event_start: event.event_start,
-  duration: event.duration,  
+  duration: event.duration, 
+  address: event.address,
+  description: event.description,
+  attendee_limit: event.attendee_limit,
   openings: event.openings,
   tags: event.tags.map do |tag|
     tag.name

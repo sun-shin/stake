@@ -1,3 +1,4 @@
 @event_users.map do |event_user|
   render partial: "event_user.json.jb", locals: { event_user: event_user }
 end
+

@@ -2,5 +2,5 @@ class EventUser < ApplicationRecord
   belongs_to :user
   belongs_to :event
 
-  # validates :event_id, uniqueness: { scope: user_id }
+  validates_uniqueness_of :event_id, :scope => :user_id, message: "is already being attended"
 end
