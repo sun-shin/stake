@@ -9,6 +9,7 @@
   description: event.description,
   attendee_limit: event.attendee_limit,
   openings: event.openings,
+  created_at: event.created_at,
   attendees: event.users.map do |user|
     user.first_name + " #{user.last_name}"
   end,
