@@ -12,15 +12,7 @@ class Event < ApplicationRecord
   validates :duration, numericality: true
 
   def openings
-    @event_users = EventUser.all
-    
-    count = 0
-    @event_users.map do |event_user|
-      if event_user.event_id == id 
-        count += 1
-      end
-    end
-    attendee_limit - count
+    attendee_limit - event_users.count
   end
   
 end

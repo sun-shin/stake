@@ -1,1 +1,15 @@
-render partial: "event.json.jb", locals: { event: @event }
+event_hash = render partial: "event.json.jb", locals: { event: @event }
+event_hash[:attendees] = @event.users.map do |user|
+  render partial: "api/users/user", locals: {user: user}
+end
+event_hash[:tags] = @event.tags.map do |tag|
+  render partial: "api/tags/tag", locals: {tag: tag}
+end
+event_hash[:host] = render partial: "api/users/user", locals: {user: @event.user}
+event_hash[:openings] = @event.openings
+event_hash[:attending] = false
+# check event's array of users to see if current user is attending
+if current_user && @event.users.include?(current_user)
+  event_hash[:attending] = true
+end
+event_hash

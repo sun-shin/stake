@@ -1,2 +1,4 @@
-render partial: "event_user.json.jb", locals: { event_user: @event_user }
+event_user_hash = render partial: "event_user.json.jb", locals: { event_user: @event_user }
+event_user_hash[:user] = render partial: "api/users/user", locals: {user: @event_user.user}
+event_user_hash
 

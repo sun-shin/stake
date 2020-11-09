@@ -1,6 +1,0 @@
-{
-  id: event.id,
-  title: event.title,
-  event_start: event.event_start,
-  duration: event.duration
-}

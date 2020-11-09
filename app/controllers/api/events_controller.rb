@@ -23,6 +23,13 @@ class Api::EventsController < ApplicationController
       duration: params[:duration]
     )
     if @event.save
+      # params[:tag_ids] = [2, 5, 9]
+      params[:tag_ids].each do |tag_id|
+        EventTag.create(
+          event_id: @event.id,
+          tag_id: tag_id
+        )
+      end
       render "show.json.jb", status: :created
     else
       render json: { errors: @event.errors.full_messages }, status: :bad_request
@@ -42,6 +49,13 @@ class Api::EventsController < ApplicationController
 
     if @event.user_id == current_user.id 
       if @event.save
+        @event.event_tags.destroy_all
+        params[:tag_ids].each do |tag_id|
+          EventTag.create(
+            event_id: @event.id,
+            tag_id: tag_id
+          )
+        end
         render "show.json.jb"
       else
         render json: { errors: @event.errors.full_messages }, status: :bad_request
@@ -59,5 +73,9 @@ class Api::EventsController < ApplicationController
     else 
       render json: { status: :unauthorized }
     end
+  end
+
+  def attendingindex
+    
   end
 end

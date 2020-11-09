@@ -19,17 +19,6 @@ class Api::EventTagsController < ApplicationController
     end
   end
   
-  
-  def update 
-    @event_tag = EventTag.find(params[:id])
-    if @event_tag.event.user_id == current_user.id
-      @event_tag.tag_id = params[:tag_id] || @event_tag.tag_id
-      
-      render "show.json.jb"
-    else
-      render json: { message: "Users may only change tags of their own events" }, status: :unauthorized
-    end
-  end
 
   def destroy 
     event_tag = EventTag.find(params[:id])

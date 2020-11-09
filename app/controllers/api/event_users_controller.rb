@@ -21,12 +21,9 @@ class Api::EventUsersController < ApplicationController
   end
 #unattend event
   def destroy 
-    event_user = EventUser.find(params[:id])
-    if event_user.user_id == current_user.id
-      event_user.destroy
-      render json: {message: "You are no longer attending this event."}
-    else
-      render json: {message: "You can only unattend your attending events"}, status: :unauthorized
-    end
+    event = Event.find(params[:id])
+    event_user = EventUser.find_by(event_id: event.id, user_id: current_user.id)
+    event_user.destroy
+    render json: {message: "You are no longer attending this event."}
   end
 end
