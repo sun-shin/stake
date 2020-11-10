@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     delete "/tags/:id" => "tags#destroy"
 
     post "/event_tags" => "event_tags#create"
-    patch "/event_tags/:id" => "event_tags#update"
     delete "/event_tags/:id" => "event_tags#destroy"
   end
 end

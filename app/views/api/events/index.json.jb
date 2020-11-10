@@ -1,3 +1,7 @@
 @events.map do |event|
-  render partial: "event.json.jb", locals: { event: event }
+  event_hash = render partial: "event.json.jb", locals: { event: event }
+  event_hash[:host] = render partial: "api/users/user", locals: {user: event.user}
+
+  event_hash
 end
+

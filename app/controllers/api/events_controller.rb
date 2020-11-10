@@ -75,7 +75,4 @@ class Api::EventsController < ApplicationController
     end
   end
 
-  def attendingindex
-    
-  end
 end
