@@ -15,9 +15,9 @@ class Api::UsersController < ApplicationController
       password: params[:password],
       password_confirmation: params[:password_confirmation],
       phone_number: params[:phone_number],
-      image: params[:image]
+      image: response["secure_url"]
     )
-    if @user.save
+    if @user.save 
       render "show.json.jb", status: :created
     else
       render json: { errors: @user.errors.full_messages }, status: :bad_request
@@ -25,6 +25,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update
+    response = Cloudinary::Uploader.upload(params[:image])
     @user = User.find(params[:id])
     if @user == current_user
       @user.first_name = params[:first_name] || @user.first_name
@@ -35,7 +36,7 @@ class Api::UsersController < ApplicationController
         @user.password_confirmation = params[:password_confirmation] 
       end
       @user.phone_number = params[:phone_number] || @user.phone_number
-      @user.image = params[:image] || @user.image
+      @user.image = response["secure_url"] || @user.image
 
       if @user.save
         render "show.json.jb"
