@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   validates :description, length: { in: 5..250 }
   validates :address, presence:true
   validates :event_start, presence: true
+  validates :attendee_limit, numericality: true
   validates :duration, numericality: true
 
   def openings
