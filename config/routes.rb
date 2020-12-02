@@ -24,4 +24,5 @@ Rails.application.routes.draw do
     post "/event_tags" => "event_tags#create"
     delete "/event_tags/:id" => "event_tags#destroy"
   end
+  get "/*path" => proc { [200, {}, [ActionView::Base.new.render(file: 'public/index.html')]] } 
 end

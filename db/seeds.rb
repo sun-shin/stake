@@ -1,25 +1,103 @@
-# Event.create!([
-#   {title: "Basketball Tournament Help", user_id: 1, description: "clean-up and registration", address: "123 Place Street", attendee_limit: 20},
-#   {title: "Lakefront Clean-up", user_id: 2, description: "pick up loose trash on beaches and lakefront trail", address: "42 Michigan Avenue", attendee_limit: 150},
-#   {title: "Flu-Shot Aide", user_id: 2, description: "help with registration", address: "23 W Taylor Street", attendee_limit: 8}
-# ])
-
-# Tag.create!([
-#   {name: "environment"},
-#   {name: "sports"},
-#   {name: "health"},
-#   {name: "youth"}
+User.create!([
+  {email: "sun@gmail.com", password_digest: "$2a$12$tWHCdrNusyh0Mvoe2uM7sOJ93S7Zqd6LGOxW18FP17YityyMLK1ly", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605879636/mavixwliegpfao0ugxx8.jpg", phone_number: "8159633690", first_name: "Sun", last_name: "Shin"},
+  {email: "jc@gmail.com", password_digest: "$2a$12$b7lNaWWdp9EDo5VwItAmC.wEZ7X/SvGhjRT2aj26zFCSMuiw5nxMK", image: "https://i.postimg.cc/nzPtKV45/imageedit-1-7953889552.jpg", phone_number: "1231231234", first_name: "Joey", last_name: "Chestnut"},
+  {email: "ew@gmail.com", password_digest: "$2a$12$QTm2u08nX2EQrCN.N6ZW1.jPGm4Gju8GW9.U8AKPXRr7ESlLp8WSi", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797190/x1r6bfejyt6ka2jiicwb.jpg", phone_number: "3127894563", first_name: "Ethan", last_name: "Williams"},
+  {email: "jj@gmail.com", password_digest: "$2a$12$8FHJfDFXNoz0ZIpW3q0/bexPjG1eKJXDjaM.zp3B7ePQA0YdPGTWC", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797248/m1eeukycadyx9sgauugo.jpg", phone_number: "3127893241", first_name: "Jimmy", last_name: "John"},
+  {email: "jrod@gmail.com", password_digest: "$2a$12$IfZxsKTkePwPJeR4rRUFsexSVj.Da.cE3qQF.w0pIL08IG9ublqB2", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797282/ybblau6jsfoscb5zwoxs.jpg", phone_number: "7737899630", first_name: "Joseph", last_name: "Rodriguez"},
+  {email: "kylee@gmail.com", password_digest: "$2a$12$LlydBkQipzIfof4/knJko.DhwyOI3wav98Nqry7IMTQtzBqBg8Aza", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797312/kn1zkqh7uptlxs9nxfzw.jpg", phone_number: "6307896542", first_name: "Kyle", last_name: "Etoroma"},
+  {email: "afull@gmail.com", password_digest: "$2a$12$oXRoaWJIDq0nNqhzJ0ejPebFnOJN9vw1Xu1EHdK1CpXbAo3qqs/GO", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797341/gyiafd1sitlmgamgnanc.jpg", phone_number: "3125556321", first_name: "Autumn", last_name: "Fuller"},
+  {email: "bpaz@gmail.com", password_digest: "$2a$12$VYqMmclIET8HcPqPCkizH.bGx4dXY3KWlSVUXsMwII7qQTLSaZa2q", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797360/tndau89wnlt8yramtesc.jpg", phone_number: "7731599510", first_name: "Brooke", last_name: "Pazos"},
+  {email: "jr@gmail.com", password_digest: "$2a$12$OkVwSPYojw2C7dUjfSJAH.noARBqIYjTW9Q5y5KRgTkg.s4CaKJwq", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605603327/sqbjmtmtzz9xo0ekdbkj.jpg", phone_number: "9639639630", first_name: "Jack ", last_name: "Rowe"},
+  {email: "dwon@gmail.com", password_digest: "$2a$12$EGOAfRP/6kEHQ6qeLGPqF.S79WjL4FOY0sdBfu5LwpZGKDVPvo2x.", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797378/kwlmysd6kgfojtkk6t0a.jpg", phone_number: "3121236956", first_name: "Drew", last_name: "Wong"},
+  {email: "dsil@gmail.com", password_digest: "$2a$12$I9PkVgtm83jNI.TnNxr.ZeW12xeIfyo3gHFkOx4ovnwqFt7eQKmFu", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797411/ru4ozx7o9e5yu4szwt5y.jpg", phone_number: "8159871560", first_name: "Diane", last_name: "Silva"},
+  {email: "ghan@gmail.com", password_digest: "$2a$12$r/kkPYwVsQkmCIcurhm90OUnCXm9XkdZCbhrcR9LmiN5cyOPOC/VO", image: "https://res.cloudinary.com/dgzqmcw5b/image/upload/v1605797430/dr65ujckywuwev2yhjnm.jpg", phone_number: "3127451234", first_name: "Gabe", last_name: "Hanna"}
+])
+Tag.create!([
+  {name: "Animals"},
+  {name: "Arts & Culture"},
+  {name: "Homeless & Housing"},
+  {name: "Disability"},
+  {name: "Disaster Relief"},
+  {name: "Education"},
+  {name: "Environment"},
+  {name: "Health"},
+  {name: "Human Rights"},
+  {name: "Hunger"},
+  {name: "Seniors"},
+  {name: "Sports"},
+  {name: "Veterans"},
+  {name: "Youth"},
+  {name: "Community"}
+])
+Event.create!([
+  {title: "Lakefront Clean-up", user_id: 2, description: "Come help pick up loose trash on beaches and lakefront trail keeping our city clean!", address: "5800 N. Sheridan Rd", attendee_limit: 100, event_start: "2020-12-15 16:00:00", duration: 120},
+  {title: "Flu-Shot Aid", user_id: 2, description: "Help providers while they distribute flu-shots to patients.", address: "1740 W Taylor St", attendee_limit: 10, event_start: "2020-12-17 14:00:00", duration: 10},
+  {title: "Dogs and Cats Chicago", user_id: 13, description: "We need animal-loving volunteers to help as we find homes for abandoned canine and felines during the holiday season. Duties will include helping employees walking , feeding, and playing the animals.", address: "1997 N. Clybourn Ave.", attendee_limit: 8, event_start: "2020-12-10 17:00:00", duration: 5},
+  {title: "Bowling Tournament", user_id: 1, description: "Concessions and registration help", address: " 322 E Illinois St", attendee_limit: 10, event_start: "2020-11-24 13:00:00", duration: 4},
+  {title: "Chicago Marathon", user_id: 1, description: "Help with runner registration, handing out water, and clean-up during the event.", address: "337 E Randolph St", attendee_limit: 15, event_start: "2020-12-12 12:00:00", duration: 3},
+  {title: "Basketball Tournament Help", user_id: 1, description: "clean-up and registration", address: "737 S Halsted St", attendee_limit: 19, event_start: "2021-01-07 18:30:00", duration: 4},
+  {title: "Light-Up Pilsen", user_id: 16, description: "Help decorate 18th Street for the Holiday season. You will be helping putting up wreaths and decorations on 18th Street as well as handing out coffee and hot choco!", address: "1102 W 18th St", attendee_limit: 50, event_start: "2020-12-04 15:02:00", duration: 5}
+])
+# EventTag.create!([
+#   {event_id: 6, tag_id: 3},
+#   {event_id: 12, tag_id: 3},
+#   {event_id: 13, tag_id: 2},
+#   {event_id: 13, tag_id: 3},
+#   {event_id: 14, tag_id: 2},
+#   {event_id: 14, tag_id: 3},
+#   {event_id: 15, tag_id: 1},
+#   {event_id: 16, tag_id: 1},
+#   {event_id: 17, tag_id: 1},
+#   {event_id: 18, tag_id: 3},
+#   {event_id: 19, tag_id: 2},
+#   {event_id: 20, tag_id: 2},
+#   {event_id: 21, tag_id: 1},
+#   {event_id: 22, tag_id: 25},
+#   {event_id: 22, tag_id: 10},
+#   {event_id: 2, tag_id: 15},
+#   {event_id: 2, tag_id: 16},
+#   {event_id: 2, tag_id: 25},
+#   {event_id: 3, tag_id: 16},
+#   {event_id: 1, tag_id: 24},
+#   {event_id: 1, tag_id: 22},
+#   {event_id: 23, tag_id: 9},
+#   {event_id: 10, tag_id: 22},
+#   {event_id: 10, tag_id: 25},
+#   {event_id: 8, tag_id: 22}
 # ])
 
 # EventUser.create!([
-#   {user_id: 1, event_id: 2},
 #   {user_id: 1, event_id: 3},
-#   {user_id: 2, event_id: 1}
+#   {user_id: 2, event_id: 1},
+#   {user_id: 2, event_id: 2},
+#   {user_id: 6, event_id: 2},
+#   {user_id: 6, event_id: 9},
+#   {user_id: 1, event_id: 6},
+#   {user_id: 8, event_id: 10},
+#   {user_id: 13, event_id: 22},
+#   {user_id: 13, event_id: 23},
+#   {user_id: 13, event_id: 3},
+#   {user_id: 13, event_id: 1},
+#   {user_id: 6, event_id: 22},
+#   {user_id: 6, event_id: 1},
+#   {user_id: 10, event_id: 2},
+#   {user_id: 11, event_id: 23},
+#   {user_id: 11, event_id: 1},
+#   {user_id: 11, event_id: 8},
+#   {user_id: 12, event_id: 23},
+#   {user_id: 14, event_id: 22},
+#   {user_id: 14, event_id: 3},
+#   {user_id: 14, event_id: 2},
+#   {user_id: 15, event_id: 22},
+#   {user_id: 16, event_id: 22},
+#   {user_id: 16, event_id: 1},
+#   {user_id: 9, event_id: 3},
+#   {user_id: 9, event_id: 2},
+#   {user_id: 7, event_id: 2},
+#   {user_id: 7, event_id: 8},
+#   {user_id: 7, event_id: 23},
+#   {user_id: 7, event_id: 22},
+#   {user_id: 2, event_id: 8},
+#   {user_id: 1, event_id: 10}
 # ])
 
-# EventTag.create!([
-#   {event_id: 1, tag_id: 2}, 
-#   {event_id: 1, tag_id: 4}, 
-#   {event_id: 2, tag_id: 1}, 
-#   {event_id: 3, tag_id: 3}, 
-# ])
